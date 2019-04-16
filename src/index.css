@@ -1,0 +1,33 @@
+body{background: red}
+.dinline{
+    display: inline-block
+}
+.flol{
+    float: left;
+}
+.flor{
+    float: right;
+}
+.btn-warning{color: #ffffff !important}
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show > .btn-warning.dropdown-toggle{color: #ffffff !important}
+.btn-warning:hover{color: #ffffff !important}
+.mar-3{margin: 0px 3px;}
+.h15{height: 15px;display: block;clear: both;}
+.card-body{padding: 15px !important;}
+.img100{width: 100%;}
+.imgmax100{max-width: 100%;}
+.buttonUploadImage{position: relative;background: none;border: 0px;color: #ffffff}
+.buttonUploadImage input{display: block;width: 100%;height: 100%;position: absolute;z-index: 999;left: 0px;top: 0px;opacity: 0;}
+.buttonUploadImage input:hover{cursor: pointer;}
+.showImage img{width: 100%;height: auto;}
+.showImage{width: 100px;text-align: center;}
+.hidden{display: none}
+.w8{width: 80%}
+.wtd120{
+    width: 120px;
+}
+.wtd100{
+    width: 100px;
+}
+
+
