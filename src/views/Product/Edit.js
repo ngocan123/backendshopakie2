@@ -7,8 +7,7 @@ import {
   Input,
   Label,
   Row,
-  Button, Modal, ModalBody, ModalFooter, ModalHeader,
-  configUrl
+  Button, Modal, ModalBody, ModalFooter, ModalHeader
 } from 'reactstrap';
 //import ManagerGallery from './../Gallery/ManagerGallery';
 import axioApi from './../../config/axioConfig';

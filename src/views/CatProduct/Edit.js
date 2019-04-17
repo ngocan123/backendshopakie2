@@ -9,7 +9,6 @@ import {
   Row,
   Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
-import ManagerGallery from './../Gallery/ManagerGallery';
 import axioApi from './../../config/axioConfig';
 import qs from 'qs';
 import CreatableSelect from 'react-select/lib/Creatable';
