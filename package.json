@@ -69,5 +69,6 @@
       "!src/serviceWorker.js",
       "!src/polyfill.js"
     ]
-  }
+  },
+  "proxy": "https://ai-shop2.herokuapp.com/"
 }
