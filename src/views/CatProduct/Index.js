@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { Button, Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
-import axioApi from './../../config/axioConfig';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import qs from 'qs';
-import { getPosts, deletePost } from './../../redux/actions';
+import React, { Component } from 'react'
+import { Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap'
+import axioApi from './../../config/axioConfig'
+import { Link } from 'react-router-dom'
+import qs from 'qs'
 
 let $this;
 class Index extends Component {

@@ -28,7 +28,7 @@ class Login extends Component {
     console.log(user);
 		axioApi.post("auth/login", qs.stringify(user)).then((res) => {
             // here we go// success login
-            if(res.data.auth == true){
+            if(res.data.auth === true){
                 // store in localStorage
                 localStorage.setItem('token', res.data.token);
                 // set axios header

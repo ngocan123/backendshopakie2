@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 import axioApi from './../../config/axioConfig';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import qs from 'qs';
-import { getPosts, deletePost } from './../../redux/actions';
 
 // const mapStateToProps = state => {
 //     return{
@@ -124,14 +122,6 @@ class IndexProduct extends Component {
                 <nav>
                   <Pagination>
                     {this.showPaginate()}
-                    {/* <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem> */}
                   </Pagination>
                 </nav>
               </CardBody>

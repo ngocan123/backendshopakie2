@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink, CardTitle, CardText,
+  TabContent, TabPane, Nav, NavItem, NavLink,
   Card,
   CardBody,
   CardHeader,
@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 //import ManagerGallery from './../Gallery/ManagerGallery';
 import axioApi from './../../config/axioConfig';
-import qs from 'qs';
 import CreatableSelect from 'react-select/lib/Creatable';
 import classnames from 'classnames';
 let $this;

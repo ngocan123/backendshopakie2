@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
-import axioApi from './../../config/axioConfig';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { getPosts, deletePost } from './../../redux/actions';
-
-const mapStateToProps = state => {
-    return{
-        posts : state.postreducer.posts  // redux_step4 getting data from store and connect with view
-    }
-}
 
 let $this;
 
