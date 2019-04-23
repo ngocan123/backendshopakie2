@@ -73,7 +73,7 @@ changeKeyword_seo(e) {
   $this.setState({ keyword_seo : e.target.value });
 }
 componentDidMount(){
-  axioApi.get('/catproduct/show/'+$this.props.match.params.id).then((res) => {
+  axioApi.get('/api/catproduct/show/'+$this.props.match.params.id).then((res) => {
       $this.setState({
           _id: res.data._id,
           name: res.data.name,
@@ -100,21 +100,20 @@ savePost(){
     description_seo: $this.state.description_seo,
     keyword_seo: $this.state.keyword_seo,
   }
-  axioApi.post('/catproduct/update/'+$this.state._id,postdata).then((res) => {
+  axioApi.post('/api/catproduct/update/'+$this.state._id,postdata).then((res) => {
     $this.props.history.push('/catproduct/index');
   });
 }
 //upload image
 getAllImage(){
-  axioApi.get('/gallery/getAll').then((res) => {
-    console.log(res.data);
+  axioApi.get('/api/gallery/getAll').then((res) => {
       $this.setState({
           gallerys : res.data
       });
   });
 }
 getIdImage(id){
-  axioApi.get('/gallery/show/'+id).then((res) => {
+  axioApi.get('/api/gallery/show/'+id).then((res) => {
     console.log(res.data);
     $this.setState({
       imageNumber: res.data._id,
@@ -131,7 +130,7 @@ imageNumbers(){
 }
 imagePath(){
   if($this.state.imagePath!=''){
-    return <img src={"https://ai-shop2.herokuapp.com"+$this.state.imagePath}/>;
+    return <img src={"http://localhost:3008/"+$this.state.imagePath}/>;
   }else{
     return '';
   }
@@ -140,11 +139,11 @@ showAllImage(){
   return $this.state.gallerys.map(function(post, i){
       return <Col xs="6" sm="3" className="text-center flol">
       <div color="divItemImage warning">
-        <img className="img100" src={'https://ai-shop2.herokuapp.com'+post.path} data-id={post._id}
-         onDoubleClick={() => $this.getIdImage(post._id)}/>
+        <img className="img100" src={'http://localhost:3008'+post.path} data-path={post.path} data-id={post._id}
+         onClick={(e) => $this.getIdImage(post._id)}/>
       </div>
       <div className="clearfix"></div>
-      <Label>giay</Label>
+      <Label>{post.name}</Label>
     </Col>
   });
 }
@@ -196,24 +195,23 @@ render() {
           </Col>
         </Row>
 
-
         <Modal isOpen={this.state.primary} toggle={this.togglePrimary}
-                className={'modal-primary modal-lg ' + this.props.className}>
-          <ModalHeader toggle={this.togglePrimary}>
-            <button className="buttonUploadImage">
-              Tải ảnh
-              <input type="file" name="file" onChange={this.onChangeHandler}/>
-            </button>
-            
-          </ModalHeader>
-          <ModalBody>
-           {this.showAllImage()}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.togglePrimary}>Cập nhật</Button>
-            <Button color="secondary" onClick={this.togglePrimary}>Bỏ qua</Button>
-          </ModalFooter>
-        </Modal>
+              className={'modal-primary modal-lg ' + this.props.className}>
+        <ModalHeader toggle={this.togglePrimary}>
+          <button className="buttonUploadImage">
+            Tải ảnh
+            <input type="file" name="file" onChange={this.onChangeHandler}/>
+          </button>
+          
+        </ModalHeader>
+        <ModalBody>
+         {this.showAllImage()}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.togglePrimary}>Cập nhật</Button>
+          <Button color="secondary" onClick={this.togglePrimary}>Bỏ qua</Button>
+        </ModalFooter>
+      </Modal>
       </div>
     );
   }

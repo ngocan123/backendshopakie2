@@ -16,6 +16,13 @@ const IndexCatProduct = React.lazy(() => import('./views/CatProduct/Index'));
 const CreateCatProduct = React.lazy(() => import('./views/CatProduct/Create'));
 const EditCatProduct = React.lazy(() => import('./views/CatProduct/Edit'));
 // // ====Kết thúc quản lý danh mục sản phẩm
+// ====Quản lý danh mục sản phẩm
+const IndexSupplier = React.lazy(() => import('./views/Supplier/Index'));
+const CreateSupplier = React.lazy(() => import('./views/Supplier/Create'));
+const EditSupplier = React.lazy(() => import('./views/Supplier/Edit'));
+// // ====Kết thúc quản lý danh mục sản phẩm
+// ====== Cấu hình 
+const Setting = React.lazy(() => import('./views/Setting/Setting'));
 // Ket thuc router
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -73,6 +80,13 @@ const routes = [
   { path: '/catproduct/create', name: 'Thêm danh mục', component: CreateCatProduct },
   { path: '/catproduct/edit/:id', name: 'Sửa danh mục', component: EditCatProduct },
   // ===== Kết thúc quản lý danh mục sản phẩm
+  //====== Quản lý nhà cung cấp
+  { path: '/supplier/index', name: 'Nhà cung cấp', component: IndexSupplier },
+  { path: '/supplier/create', name: 'Thêm nhà cung cấp', component: CreateSupplier },
+  { path: '/supplier/edit/:id', name: 'Sửa nhà cung cấp', component: EditSupplier },
+  // ===== Kết thúc quản lý nhà cung cấp
+  // ===== Cấu hình hệ thống ==== //
+  { path: '/setting/:lang', name: 'Cấu hình chung', component: Setting },
   //End Router
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },

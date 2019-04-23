@@ -29,13 +29,12 @@ class Create extends Component {
         modal: false,
         name : '', description : '', tags : [], alltags : [], 
         author : '', imagePath: '', selectedFile: null,
+        _id: null,
         gallerys: [],
         parent_id: 0,
-        imageNumber: '',
         title_seo: '',
         description_seo: '',
         keyword_seo: '',
-        _id: ''
       };
       $this = this;
   }
@@ -74,6 +73,19 @@ changeKeyword_seo(e) {
   $this.setState({ keyword_seo : e.target.value });
 }
 componentDidMount(){
+  axioApi.get('/api/supplier/show/'+$this.props.match.params.id).then((res) => {
+      $this.setState({
+          _id: res.data._id,
+          name: res.data.name,
+          description: res.data.description,
+          parent_id: res.data.parent_id,
+          imagePath: res.data.imagePath,
+          imageNumber: res.data.imageNumber,
+          title_seo: res.data.title_seo,
+          description_seo: res.data.description_seo,
+          keyword_seo: res.data.keyword_seo,
+      });
+  });
   this.showAllImage();
   this.getAllImage();
 }
@@ -88,8 +100,8 @@ savePost(){
     description_seo: $this.state.description_seo,
     keyword_seo: $this.state.keyword_seo,
   }
-  axioApi.post('/api/catproduct/store',postdata).then((res) => {
-    $this.props.history.push('/catproduct/index');
+  axioApi.post('/api/supplier/update/'+$this.state._id,postdata).then((res) => {
+    $this.props.history.push('/supplier/index');
   });
 }
 //upload image
@@ -148,10 +160,10 @@ render() {
               <CardBody>
                 <div className="form-group">
                   <Label htmlFor="name"><strong>Tên danh mục</strong></Label>
-                  <Input type="text" onChange={this.changeName} id="name" placeholder="Tên danh mục" required />
+                  <Input type="text" value={$this.state.name} onChange={this.changeName} id="name" placeholder="Tên danh mục" required />
                 </div>
                 <div className="form-group">
-                    <Label htmlFor="description">Ảnh đại diện</Label>
+                    <Label htmlFor="image"><strong>Ảnh đại diện</strong></Label>
                     <div>
                       <Button color="primary" onClick={this.togglePrimary} className="mr-1">Chọn ảnh</Button>
                       <div className="showImage">{this.imagePath()}{this.imageNumbers()}
@@ -160,22 +172,22 @@ render() {
                 </div>
                 <div className="form-group">
                   <Label htmlFor="description"><strong>Mô tả</strong></Label>
-                  <Input type="textarea" onChange={this.changeDescription} name="description" id="description"
+                  <Input type="textarea" value={$this.state.description} onChange={this.changeDescription} name="description" id="description"
                         placeholder="Mô tả" rows="3"/>
                 </div>
                 <hr></hr>
                 <div className="form-group">
                   <Label htmlFor="title_seo"><strong>Tiêu đề seo</strong></Label>
-                  <Input type="text" onChange={this.changeTitle_seo} id="title_seo" placeholder="Tiêu đề seo" />
+                  <Input type="text" value={$this.state.title_seo} onChange={this.changeTitle_seo} id="title_seo" placeholder="Tiêu đề seo" />
                 </div>
                 <div className="form-group">
                   <Label htmlFor="description_seo"><strong>Mô tả seo</strong></Label>
-                  <Input type="textarea" onChange={this.changeDescription_seo} name="description_seo" id="description_seo"
+                  <Input type="textarea" value={$this.state.description_seo} onChange={this.changeDescription_seo} name="description_seo" id="description_seo"
                         placeholder="Mô tả seo" rows="3"/>
                 </div>
                 <div className="form-group">
-                  <Label htmlFor="description_seo"><strong>Từ khóa seo</strong></Label>
-                  <Input type="textarea" onChange={this.changeKeyword_seo} name="keyword_seo" id="keyword_seo"
+                  <Label htmlFor="keyword_seo"><strong>Từ khóa seo</strong></Label>
+                  <Input type="textarea" value={$this.state.keyword_seo} onChange={this.changeKeyword_seo} name="keyword_seo" id="keyword_seo"
                         placeholder="Từ khóa seo" rows="3"/>
                 </div>
               </CardBody>
@@ -183,24 +195,23 @@ render() {
           </Col>
         </Row>
 
-
         <Modal isOpen={this.state.primary} toggle={this.togglePrimary}
-                className={'modal-primary modal-lg ' + this.props.className}>
-          <ModalHeader toggle={this.togglePrimary}>
-            <button className="buttonUploadImage">
-              Tải ảnh
-              <input type="file" name="file" onChange={this.onChangeHandler}/>
-            </button>
-            
-          </ModalHeader>
-          <ModalBody>
-           {this.showAllImage()}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.togglePrimary}>Cập nhật</Button>
-            <Button color="secondary" onClick={this.togglePrimary}>Bỏ qua</Button>
-          </ModalFooter>
-        </Modal>
+              className={'modal-primary modal-lg ' + this.props.className}>
+        <ModalHeader toggle={this.togglePrimary}>
+          <button className="buttonUploadImage">
+            Tải ảnh
+            <input type="file" name="file" onChange={this.onChangeHandler}/>
+          </button>
+          
+        </ModalHeader>
+        <ModalBody>
+         {this.showAllImage()}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.togglePrimary}>Cập nhật</Button>
+          <Button color="secondary" onClick={this.togglePrimary}>Bỏ qua</Button>
+        </ModalFooter>
+      </Modal>
       </div>
     );
   }

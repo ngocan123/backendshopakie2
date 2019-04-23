@@ -39,7 +39,7 @@ class IndexProduct extends Component {
         // axioApi.get('product/list?'+qs.stringify(filter)).then((res) => {
         //     $this.setState({ 'posts' : res.data });
         // });
-        axioApi.get('product/list?'+qs.stringify(filter)).then((res) => {
+        axioApi.get('/api/product/list?'+qs.stringify(filter)).then((res) => {
           //console.log(res.data)
           $this.setState({
             posts: res.data.posts,
@@ -47,11 +47,11 @@ class IndexProduct extends Component {
             pages: res.data.pages,
           })
           this.showPaginate();
-          console.log($this.state.pages);
+          ///console.log($this.state.pages);
         });
     }
     deletePost(id){
-        axioApi.post('/product/remove', {_id : id}).then((res) => {
+        axioApi.post('/api/product/remove', {_id : id}).then((res) => {
             $this.getDats()
         });
     }
@@ -72,7 +72,7 @@ class IndexProduct extends Component {
       $this.setState({
         page: page
       });
-      console.log($this.state.page);
+      //console.log($this.state.page);
       this.getDats();
     }
     //show paginate
@@ -83,7 +83,7 @@ class IndexProduct extends Component {
         //varrindex[index] = index
         obj.push({p:index});
       }
-      console.log(obj);
+      //console.log(obj);
       return obj.map(function(index, i){
         return <PaginationItem><PaginationLink onClick={() => $this.activePagination(index.p)} tag="button" data-id={parseInt(i)+parseInt(1)}>{parseInt(i)+parseInt(1)}</PaginationLink></PaginationItem>
       });
@@ -141,7 +141,7 @@ class Postlist extends Component{
   }
   render(){
     return <tr>
-        <td className="text-center wtd100"><img className="w8" src={'https://ai-shop2.herokuapp.com'+ this.props.post.imagePath}/></td>
+        <td className="text-center wtd100"><img className="w8" src={'http://localhost:3008'+ this.props.post.imagePath}/></td>
         <td>{this.props.post.name}</td>
         <td>{this.props.post.description}</td>
         <td>{(this.props.post.author)? this.props.post.author.email : ''}</td>

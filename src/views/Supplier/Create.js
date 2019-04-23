@@ -88,8 +88,8 @@ savePost(){
     description_seo: $this.state.description_seo,
     keyword_seo: $this.state.keyword_seo,
   }
-  axioApi.post('/api/catproduct/store',postdata).then((res) => {
-    $this.props.history.push('/catproduct/index');
+  axioApi.post('/api/supplier/store',postdata).then((res) => {
+    $this.props.history.push('/supplier/index');
   });
 }
 //upload image
@@ -142,13 +142,13 @@ render() {
           <Col xs="12" sm="12">
             <Card>
               <CardHeader>
-                <strong>Thêm danh mục</strong>
+                <strong>Thêm nhà cung cấp</strong>
                 <button onClick={this.savePost} className="btn btn-sm btn-primary flor">Cập nhật</button>
               </CardHeader>
               <CardBody>
                 <div className="form-group">
-                  <Label htmlFor="name"><strong>Tên danh mục</strong></Label>
-                  <Input type="text" onChange={this.changeName} id="name" placeholder="Tên danh mục" required />
+                  <Label htmlFor="name"><strong>Tên nhà cung cấp</strong></Label>
+                  <Input type="text" onChange={this.changeName} id="name" placeholder="Tên nhà cung cấp" required />
                 </div>
                 <div className="form-group">
                     <Label htmlFor="description">Ảnh đại diện</Label>

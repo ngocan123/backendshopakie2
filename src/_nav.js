@@ -45,6 +45,40 @@ export default {
           name: 'Danh mục sản phẩm',
           url: '/catproduct/index',
           icon: 'icon-puzzle',
+        },
+        {
+          name: 'Nhà cung cấp',
+          url: '/supplier/index',
+          icon: 'icon-puzzle',
+        }
+      ],
+    },
+    {
+      name: 'Quản lý đơn hàng',
+      url: '/order',
+      icon: 'icon-puzzle',
+      children: [
+        {
+          name: 'Danh sách đơn hàng',
+          url: '/order/index',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'Danh sách Voucher',
+          url: '/voucher/index',
+          icon: 'icon-puzzle',
+        }
+      ],
+    },
+    {
+      name: 'Cấu hình hệ thống',
+      url: '/setting',
+      icon: 'icon-puzzle',
+      children: [
+        {
+          name: 'Cài đặt chung',
+          url: '/setting/vi',
+          icon: 'icon-puzzle',
         }
       ],
     },

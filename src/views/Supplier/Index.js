@@ -20,7 +20,7 @@ class Index extends Component {
           keyword: $this.state.keyword,
           page: $this.state.page
         };
-        axioApi.get('/api/catproduct/list?'+qs.stringify(filter)).then((res) => {
+        axioApi.get('/api/supplier/list?'+qs.stringify(filter)).then((res) => {
           //console.log(res.data)
           $this.setState({
             posts: res.data.posts,
@@ -32,7 +32,7 @@ class Index extends Component {
         });
     }
     deletePost(id){
-        axioApi.post('/api/catproduct/remove', {_id : id}).then((res) => {
+        axioApi.post('/api/supplier/remove', {_id : id}).then((res) => {
             $this.getDats()
         });
     }
@@ -42,13 +42,12 @@ class Index extends Component {
           <td className="text-center wtd100"><img alt={post.imagePath} className="w8" src={'https://ai-shop2.herokuapp.com'+ post.imagePath}/></td>
           <td>{post.name}</td>
           <td>{post.description}</td>
-          <td>{(post.author)? post.author.email : ''}</td>
-          <td className="text-center">
-              <Link to={"/catproduct/edit/"+post._id}>
-                  <button className="btn btn-sm btn-warning mar-3"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</button>
+          <td className="text-center" style={{width: '120px'}}>
+              <Link to={"/supplier/edit/"+post._id}>
+                  <button className="btn btn-sm btn-warning mar-3"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
               </Link>
               <button className="btn btn-sm btn-danger mar-3" onClick={() => $this.deletePost(post._id)}>
-                  <i className="fa fa-trash" aria-hidden="true"></i> Xóa
+                  <i className="fa fa-trash" aria-hidden="true"></i>
               </button>
           </td>                   
         </tr>
@@ -89,8 +88,8 @@ class Index extends Component {
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i> Danh sách danh mục
-                <Link to="/catproduct/create"><button className="btn btn-sm btn-success flor"><i className="fa fa-plus" aria-hidden="true"></i> Thêm</button></Link>
+                <i className="fa fa-align-justify"></i> Danh sách nhà cung cấp
+                <Link to="/supplier/create"><button className="btn btn-sm btn-success flor"><i className="fa fa-plus" aria-hidden="true"></i> Thêm</button></Link>
               </CardHeader>
               <div className="h15"></div>
               <div>
@@ -104,7 +103,6 @@ class Index extends Component {
                   <tr>
                     <th>Ảnh</th>
                     <th>Tên</th>
-                    <th>Danh mục</th>
                     <th>Hiển thị</th>
                     <th>Hành động</th>
                   </tr>

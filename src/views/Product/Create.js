@@ -35,6 +35,9 @@ class Create extends Component {
         imageNumber: '',
         imagePath: '',
         price: '',
+        title_seo: '',
+        description_seo: '',
+        keyword_seo: '',
       };
       $this = this;
   }
@@ -76,7 +79,7 @@ tagsSelectChange = (selectedtag) => {
 }
 componentDidMount(){
 
-    axioApi.get('/product/getAllTags').then((res) => {
+    axioApi.get('/api/product/getAllTags').then((res) => {
         $this.setState({
             alltags : res.data
         });
@@ -95,31 +98,29 @@ test(){
 savePost(){
   const postdata = {
       name : $this.state.name,
-      imagePath : $this.state.imagePath,
       price : $this.state.price,
       imageNumber : $this.state.imageNumber,
+      imagePath : $this.state.imagePath,
       description : $this.state.description,
       tags : $this.state.tags,
-      author : $this.props.author,
+      //author : $this.state.author,
   }
-    axioApi.post('/product/saveProductAndTag', postdata, {
-      onUploadProgress: ProgressEvent => {
-        console.log('Upload progress:' + Math.round(ProgressEvent.loaded/ProgressEvent.loaded*100) + '%' );
-      }
-    }).then((res) => {
+  //console.log(postdata);
+    axioApi.post('/api/product/saveProductAndTag', postdata).then((res) => {
       $this.props.history.push('/product/index');
     });
 }
 //upload image
 getAllImage(){
-  axioApi.get('/gallery/getAll').then((res) => {
+  axioApi.get('/api/gallery/getAll').then((res) => {
       $this.setState({
           gallerys : res.data
       });
   });
 }
 getIdImage(id){
-  axioApi.get('/gallery/show/'+id).then((res) => {
+  axioApi.get('/api/gallery/show/'+id).then((res) => {
+    console.log(res.data);
     $this.setState({
       imageNumber: res.data._id,
       imagePath: res.data.path
@@ -128,14 +129,14 @@ getIdImage(id){
 }
 imageNumbers(){
   if($this.state.imageNumber!=''){
-    return <input name='imageNumber' className="hidden" value={$this.props.imageNumber}/>;
+    return <input name='imageNumber' className="hidden" value={$this.state.imageNumber}/>;
   }else{
     return '';
   }
 }
 imagePath(){
   if($this.state.imagePath!=''){
-    return <img src={"https://ai-shop2.herokuapp.com"+$this.props.imagePath}/>;
+    return <img src={"http://localhost:3008/"+$this.state.imagePath}/>;
   }else{
     return '';
   }
@@ -144,11 +145,11 @@ showAllImage(){
   return $this.state.gallerys.map(function(post, i){
       return <Col xs="6" sm="3" className="text-center flol">
       <div color="divItemImage warning">
-        <img className="img100" src={'https://ai-shop2.herokuapp.com'+post.path} data-id={post._id}
-         onClick={() => $this.getIdImage(post._id)}/>
+        <img className="img100" src={'http://localhost:3008'+post.path} data-path={post.path} data-id={post._id}
+         onClick={(e) => $this.getIdImage(post._id)}/>
       </div>
       <div className="clearfix"></div>
-      <Label>giay</Label>
+      <Label>{post.name}</Label>
     </Col>
   });
 }
